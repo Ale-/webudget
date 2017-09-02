@@ -1,0 +1,14 @@
+# Ignore bower components
+bower_components
+
+# Ignore Sass cache
+.sass-cache
+
+# Ignore Css files
+css
+
+# Ignore assets other than project's
+admin
+leaflet
+utils
+flags
