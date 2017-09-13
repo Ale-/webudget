@@ -129,6 +129,14 @@ LOCALE_PATHS = (
 )
 DECIMAL_SEPARATOR = '.'
 
+#
+# Restrict django-countries querysets to European countries
+# from http://www.countrycallingcodes.com/iso-country-codes/europe-codes.php
+#
+COUNTRIES_ONLY = [ 'AL','AD','AT','BY','BE','BA','BG','HR','CY','CZ','DK','EE',
+'FO','FI','FR','DE','GI','GR','HU','IS','IE','IM','IT','RS',
+'LV','LI','LT','LU','MK','MT','MD','MC','ME','NL','NO','PL','PT','RO','RU',
+'SM','RS','SK','SI','ES','SE','CH','UA','GB','VA','RS' ]
 
 #
 # Import private settings
