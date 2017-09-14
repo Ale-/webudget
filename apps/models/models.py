@@ -1,6 +1,7 @@
 # django
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.text import slugify
 # contrib
 from djgeojson.fields import PointField
 from django_countries.fields import CountryField
@@ -9,6 +10,7 @@ class Municipality(models.Model):
     """ Municipality """
 
     name        = models.CharField(_('Name'), max_length=128, blank=False, null=False, help_text=_('Municipality name. Use native language.'))
+    slug        = models.SlugField(editable=False, default="---")
     description = models.TextField(_('Summary'), blank=True, help_text=_('A short summary about the municipality.'))
     country     = CountryField(_('Country'), help_text=_('Select municipality\'s country.'))
     coords      = PointField(_('Coordinates'), blank=False, null=True, help_text=_('Locate the municipality in the map.'))
@@ -20,6 +22,11 @@ class Municipality(models.Model):
     def __str__(self):
         """ String representation of this model objects. """
         return self.name or '---'
+
+    def save(self, *args, **kwargs):
+        """ Update city slug when updating content """
+        self.slug = slugify(self.name)
+        super(Municipality, self).save(*args, **kwargs)
 
 class Milestone(models.Model):
     """ A milestone is a featured project budgeted by a Municipality """
