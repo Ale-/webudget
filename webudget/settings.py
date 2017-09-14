@@ -58,6 +58,7 @@ CONTRIB_APPS = [
 
 PROJECT_APPS = [
     'apps.models',
+    'apps.views',
     'apps.utils',
 ]
 

@@ -1,0 +1,7 @@
+{# Dataset detail page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{% block body_classes %}dataset-detail{% endblock %}
+
+{% block main %}
+    <h1>{{ object.municipality.name }}, {{ object.year }}</h1>
+    {% lorem %}
+{% endblock %}
