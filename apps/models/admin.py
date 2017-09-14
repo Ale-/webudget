@@ -7,4 +7,5 @@ from . import models
 
 # Register models in admin
 admin.site.register(models.City, LeafletGeoAdmin)
-admin.site.register(models.Dataset, LeafletGeoAdmin)
+admin.site.register(models.Dataset)
+admin.site.register(models.Milestone)
