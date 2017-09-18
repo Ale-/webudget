@@ -1,0 +1,8 @@
+{# Login page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n utils %}
+{% block body_classes %}login{% endblock %}
+
+{# Content #}
+{% block main %}
+    {% trans 'Login' as login_submit %}
+    {% include 'forms/simpleform.html' with form_title="Login" form=form form_class="login" submit_text=login_submit %}
+{% endblock %}

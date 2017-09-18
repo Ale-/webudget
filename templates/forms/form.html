@@ -1,0 +1,39 @@
+{# Template to render a modelform #} {% load i18n utils %}
+
+{% if form.errors and not form.non_field_errors %}
+    <p class="form-errors">
+        {% if form.errors.items|length == 1 %}
+            {% trans "There's an error in the form. Please review it." %}
+        {% else %}
+            {% trans "There's some errors in the form. Please review it." %}
+        {% endif %}
+    </p>
+{% endif %}
+
+{% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+        <p class="form-errors">
+            {{ error }}
+        </p>
+    {% endfor %}
+{% endif %}
+
+<form enctype="multipart/form-data" action="{{ action }}" method="post" class="form-{{ form_class }}">
+    {% csrf_token %}
+    <div class="inner">
+        {% with 'forms/fields-'|add:form_class|add:'.html' as fields %}
+            {% include fields with form_class=form_class %}
+        {% endwith %}
+        <div class="form__buttons">
+            <input class="form__submit" type="submit" value="{{ submit_text }}" />
+            {% if delete_arg %}
+                {% with 'models:'|add:'delete_'|add:form__html_class as edit_url %}
+                <a class="form__delete" href="{% url edit_url delete_arg %}">
+                    {% trans 'Borrar este contenido' %}
+                </a>
+                {% endwith %}
+            {% endif %}
+            <a class="form__cancel" onclick="history.go(-1)">{% trans 'Cancel' %}</a>
+        </div>
+    </div>
+</form>
