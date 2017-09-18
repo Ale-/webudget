@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from django.views.generic.base import TemplateView
 # project
 from apps.views import views
+from apps.models import urls as models_urls
 
 urlpatterns = [
     # Admin
@@ -18,6 +19,8 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
+    # Forms
+    url(r'', include(models_urls, namespace="modelforms")),
     # Frontpage
     url(r'^$', TemplateView.as_view(template_name='pages/front.html'), name="front"),
     url(r'', include('registration.backends.default.urls')),
