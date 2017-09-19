@@ -1,3 +1,7 @@
-{# Toolbar region #} {% extends 'regions/region-base.html' %}
+{# Toolbar region #} {% extends 'regions/region-base.html' %} {% load i18n utils %}
 
-{% block region_content %}{% endblock %}
+{% block region_content %}
+    <div class="page-logo">
+        <img src="{% img 'webudget--logo.png' %}" alt="{% trans 'Logo of WeBudget (name in two colored rectangles)' %}" />
+    </div>
+{% endblock %}
