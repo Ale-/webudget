@@ -1,0 +1,6 @@
+# Ignore contrib assets
+
+admin/*
+flags/*
+leaflet/*
+utils/*
