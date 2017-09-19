@@ -10,6 +10,7 @@
             <main class="layout-main">
                 {% block main %}{% endblock %}
             </main>
+            {% include 'regions/navigation.html' with region_name='navigation' html_container='aside' layout='hidden' %}
         </div>
     </div>
 
