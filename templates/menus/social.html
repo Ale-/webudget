@@ -1,0 +1,21 @@
+{# User menu of the site #} {% load static i18n %}
+
+<nav class="social-menu">
+    <ul class="social-menu__links">
+        <li class="social-menu__link">
+            <a href="/contact" title="{% trans 'Contact with site managers' %}">
+                {% trans 'Contact' %}
+            </a>
+        </li>
+        <li class="social-menu__link">
+            <a href="http://twitter.com" target="_blank" title="{% trans 'Twitter profile of webudget' %}">
+                {% trans 'Twitter' %}
+            </a>
+        </li>
+        <li class="social-menu__link">
+            <a href="https://github.com/Ale-/webudget" target="_blank" title="{% trans 'Github repo of the site' %}">
+                {% trans 'Github' %}
+            </a>
+        </li>
+    </ul>
+</nav>
