@@ -5,6 +5,10 @@ from django.http import Http404, HttpResponse
 # project
 from apps.models import models
 
+# Municipality list
+class MunicipalityList(ListView):
+    model = models.Municipality
+
 # Municipality view
 class MunicipalityDetail(DetailView):
     model = models.Municipality

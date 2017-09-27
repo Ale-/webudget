@@ -26,6 +26,8 @@ urlpatterns += i18n_patterns(
     # Frontpage
     url(r'^$', TemplateView.as_view(template_name='pages/front.html'), name="front"),
     url(r'', include('registration.backends.default.urls')),
+    # Municipality list
+    url(r'^municipalities/', views.MunicipalityList.as_view(), name="municipality-list"),
     # Municipality detail
     url(r'^municipality/(?P<slug>[-\w]+)/$', views.MunicipalityDetail.as_view(), name="municipality-detail"),
     # Dataset detail

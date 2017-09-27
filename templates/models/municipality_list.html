@@ -1,0 +1,15 @@
+{# Municipality detail page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{% block body_classes %}municipality-list{% endblock %}
+
+{% block main %}
+    {% lorem %}
+    {% for item in items %}
+        {{ item.name }}
+    {% empty %}
+    <div class="no-results--municipalities">
+        {% blocktrans trimmed %}
+        There're no contents created yet.
+        {% endblocktrans %}
+    </div>
+    {% endfor %}
+{% endblock %}
