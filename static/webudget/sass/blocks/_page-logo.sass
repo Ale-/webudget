@@ -1,6 +1,13 @@
 //Main logo of the site
+// /regions/toolbar.html
+
+@import compass/css3/transition
 
 .page-logo
   display: inline-block
   float: left
   height: $m*2
+  margin-left: $m
+  +transition(opacity .15s ease)
+  &:hover
+    opacity: .75

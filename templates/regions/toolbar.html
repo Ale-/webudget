@@ -2,7 +2,9 @@
 
 {% block region_content %}
     <div class="page-logo">
-        <img src="{% img 'webudget--logo.png' %}" alt="{% trans 'Logo of WeBudget (name in two colored rectangles)' %}" />
+        <a href="{% url 'front' %}">
+            <img src="{% img 'webudget--logo.png' %}" alt="{% trans 'Logo of WeBudget (name in two colored rectangles)' %}" />
+        </a>
     </div>
     <div id="show-navigation">
         {% include 'menus/hamburguer.html' %}
