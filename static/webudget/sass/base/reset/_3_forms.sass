@@ -18,10 +18,8 @@
   border: 0
   background-color: white
   outline: 2px solid $color_text
-  +transition(background-color .1s ease)
   &:hover
-    background-color: $color_text
-    color: white
+    outline-width: 3px
 
 =button_box_light
   +button_box
@@ -55,6 +53,36 @@
     +button_box
     &:hover
       cursor: pointer
+
+=simple_little_form
+  width: 480px
+  input[type=text],
+  input[type=email],
+  input[type=password]
+    background: none
+    border: 1px solid $color_text
+    border-width: 0 0 1px
+    display: block
+    width: 50%
+    line-height: $m*1.5
+    margin: 0 auto
+    width: 100%
+    &:focus
+      border-width: 0 0 2px
+  label
+    +h(5)
+    margin-top: $m*1.5
+    line-height: $m*1.5
+    display: block
+    width: 50%
+  input[type=submit]
+    display: block
+    margin: $m*2 auto
+    text-transform: uppercase
+    letter-spacing: 1px
+    font-size: .8em
+    +button_box
+
 
 // Specific resets
 .geocode-widget
