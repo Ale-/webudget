@@ -1,24 +1,31 @@
 {# User menu of the site #} {% load static i18n %}
 
-<div class="user-hello">
-  {% trans 'Hi' %}, <span class="user-hello__name">{{ current_username }}</span>
-</div>
 <nav class="user-menu">
+    <div class="user-hello">
+      {% if request.user.is_registered %}
+      {% trans 'Hi' %}, <span class="user-hello__name">{{ current_username }}</span>
+      {% endif %}
+    </div>
     <ul class="user-menu__links">
+        {% if request.user.is_anonymous %}
         <li class="user-menu__link">
             <a href="{% url 'auth_login' %}" title="{% trans 'Login into the site' %}">
                 {% trans 'Login' %}
             </a>
         </li>
-        <li class="user-menu__link">
-            <a href="{% url 'admin:login' %}" title="{% trans 'Admin the site' %}">
-                {% trans 'Admin' %}
-            </a>
-        </li>
+        {% else %}
         <li class="user-menu__link">
             <a href="{% url 'auth_logout' %}" title="{% trans 'Admin the site' %}">
                 {% trans 'Logout' %}
             </a>
         </li>
+        {% endif %}
+        {% if request.user.is_staff %}
+        <li class="user-menu__link">
+            <a href="{% url 'admin:login' %}" title="{% trans 'Admin the site' %}">
+                {% trans 'Admin' %}
+            </a>
+        </li>
+        {% endif %}
     </ul>
 </nav>
