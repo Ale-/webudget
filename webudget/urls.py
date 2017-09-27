@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^contact/', include('contact_form.urls')),
     # CKEditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    # Registration
+    url(r'', include('registration.backends.default.urls')),
 ]
 
 urlpatterns += i18n_patterns(
@@ -25,7 +27,15 @@ urlpatterns += i18n_patterns(
     url(r'', include(models_urls, namespace="modelforms")),
     # Frontpage
     url(r'^$', TemplateView.as_view(template_name='pages/front.html'), name="front"),
-    url(r'', include('registration.backends.default.urls')),
+    # Static
+    # About
+    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
+    # Credits
+    url(r'^credits/$', TemplateView.as_view(template_name='pages/credits.html'), name="credits"),
+    # Terms
+    url(r'^terms/$', TemplateView.as_view(template_name='pages/terms.html'), name="terms"),
+    # Privacy
+    url(r'^privacy/$', TemplateView.as_view(template_name='pages/privacy.html'), name="privacy"),
     # Municipality list
     url(r'^municipalities/', views.MunicipalityList.as_view(), name="municipality-list"),
     # Municipality detail

@@ -2,6 +2,8 @@
 {% block body_classes %}municipality-list{% endblock %}
 
 {% block main %}
+    {% trans 'Municipalities' as title %}
+    {% include 'pages/pagetitle.html' with title=title %}
     {% lorem %}
     {% for item in items %}
         {{ item.name }}
