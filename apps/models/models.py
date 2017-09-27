@@ -5,6 +5,7 @@ from django.utils.text import slugify
 # contrib
 from djgeojson.fields import PointField
 from django_countries.fields import CountryField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Municipality(models.Model):
     """ Municipality """
@@ -71,3 +72,13 @@ class Dataset(models.Model):
     def __str__(self):
         """ String representation of this model objects. """
         return self.municipality.name + "#" + self.year or '---'
+
+class Block(models.Model):
+    """ Text blocks """
+
+    title         = models.CharField(_('Title'), max_length=128, blank=False, null=False, help_text=_('Title of the block.'))
+    body          = RichTextUploadingField(_('Summary'), blank=True, help_text=_('Text body of the block'))
+
+    def __str__(self):
+        """ String representation of this model objects. """
+        return self.title

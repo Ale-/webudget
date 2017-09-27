@@ -54,6 +54,8 @@ CONTRIB_APPS = [
     'leaflet',
     'djgeojson',
     'django_countries',
+    'ckeditor',
+    'ckeditor_uploader'
 ]
 
 PROJECT_APPS = [
@@ -138,6 +140,24 @@ COUNTRIES_ONLY = [ 'AL','AD','AT','BY','BE','BA','BG','HR','CY','CZ','DK','EE',
 'FO','FI','FR','DE','GI','GR','HU','IS','IE','IM','IT','RS',
 'LV','LI','LT','LU','MK','MT','MD','MC','ME','NL','NO','PL','PT','RO','RU',
 'SM','RS','SK','SI','ES','SE','CH','UA','GB','VA','RS' ]
+
+# CKEDITOR
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'width'  : '100%',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Image' ],
+            ['RemoveFormat', 'Source']
+        ]
+    },
+}
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_JQUERY_URL  = "/static/admin/js/vendor/jquery/jquery.min.js"
+
 
 #
 # Import private settings

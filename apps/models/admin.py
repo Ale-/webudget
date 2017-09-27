@@ -9,3 +9,4 @@ from . import models
 admin.site.register(models.Municipality, LeafletGeoAdmin)
 admin.site.register(models.Dataset)
 admin.site.register(models.Milestone)
+admin.site.register(models.Block)

@@ -15,7 +15,9 @@ urlpatterns = [
     # i18n
     url(r'^i18n/', include('django.conf.urls.i18n')),
     # Contact form
-    url(r'^contact/', include('contact_form.urls'))
+    url(r'^contact/', include('contact_form.urls')),
+    # CKEditor
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 urlpatterns += i18n_patterns(
