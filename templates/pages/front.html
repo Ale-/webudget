@@ -1,6 +1,11 @@
 {# Frontpage #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
 {% block body_classes %}front{% endblock %}
 
+{% block page_html_title %}
+    {% trans 'Welcome' as title %}
+    {{ title }}
+{% endblock %}
+
 {% block main %}
     {% lorem %}
 {% endblock %}

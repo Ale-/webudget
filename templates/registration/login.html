@@ -1,6 +1,11 @@
 {# Login page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n utils %}
 {% block body_classes %}login{% endblock %}
 
+{% block page_html_title %}
+    {% trans 'Login' as title %}
+    {{ title }}
+{% endblock %}
+
 {# Content #}
 {% block main %}
     {% trans 'Login' as login_submit %}

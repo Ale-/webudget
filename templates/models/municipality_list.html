@@ -1,6 +1,11 @@
 {# Municipality detail page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
 {% block body_classes %}municipality-list{% endblock %}
 
+{% block page_html_title %}
+    {% trans 'Municipalities' as title %}
+    {{ title }}
+{% endblock %}
+
 {% block main %}
     {% trans 'Municipalities' as title %}
     {% include 'pages/pagetitle.html' with title=title %}

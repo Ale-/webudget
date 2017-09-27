@@ -93,6 +93,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'apps.users.context_processors.current_username',
+                'apps.utils.context_processors.html_document_meta',
             ],
         },
     },
