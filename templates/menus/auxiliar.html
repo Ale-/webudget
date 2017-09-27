@@ -1,0 +1,21 @@
+{# User menu of the site #} {% load static i18n %}
+
+<nav class="auxiliar-menu">
+    <ul class="auxiliar-menu__links">
+        <li class="auxiliar-menu__link">
+            <a href="/" title="{% trans 'Contact with site managers' %}">
+                {% trans 'Credits' %}
+            </a>
+        </li>
+        <li class="auxiliar-menu__link">
+            <a href="/" target="_blank" title="{% trans 'Terms and conditions of webudget' %}">
+                {% trans 'Terms and conditions' %}
+            </a>
+        </li>
+        <li class="auxiliar-menu__link">
+            <a href="/" target="_blank" title="{% trans 'Privacy Policy of the site' %}">
+                {% trans 'Privacy policy' %}
+            </a>
+        </li>
+    </ul>
+</nav>
