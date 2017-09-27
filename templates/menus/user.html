@@ -1,11 +1,6 @@
 {# User menu of the site #} {% load static i18n %}
 
 <nav class="user-menu">
-    <div class="user-hello">
-      {% if request.user.is_registered %}
-      {% trans 'Hi' %}, <span class="user-hello__name">{{ current_username }}</span>
-      {% endif %}
-    </div>
     <ul class="user-menu__links">
         {% if request.user.is_anonymous %}
         <li class="user-menu__link">

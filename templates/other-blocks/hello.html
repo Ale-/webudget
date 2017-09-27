@@ -1,0 +1,7 @@
+{# User hello #} {% load i18n %}
+
+{% if not request.user.is_anonymous %}
+<div class="user-hello">
+      {% trans 'Hi' %}, <span class="user-hello__name">{{ current_username }}</span>
+</div>
+{% endif %}
