@@ -62,6 +62,7 @@ PROJECT_APPS = [
     'apps.models',
     'apps.views',
     'apps.utils',
+    'apps.users',
 ]
 
 INSTALLED_APPS = CONTRIB_APPS + PROJECT_APPS
@@ -91,6 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.users.context_processors.current_username',
             ],
         },
     },
