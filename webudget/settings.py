@@ -161,6 +161,16 @@ CKEDITOR_CONFIGS = {
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_JQUERY_URL  = "/static/admin/js/vendor/jquery/jquery.min.js"
 
+#
+# Leaflet
+#
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (44.4945392,21.4319299),
+    'DEFAULT_ZOOM'  : 4,
+    'MIN_ZOOM'      : 2,
+    'MAX_ZOOM'      : 18,
+}
 
 #
 # Import private settings

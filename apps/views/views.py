@@ -9,6 +9,11 @@ from apps.models import models
 class MunicipalityList(ListView):
     model = models.Municipality
 
+    def get_context_data(self, **kwargs):
+        context = super(MunicipalityList, self).get_context_data(**kwargs)
+        context['current_countries'] = models.Municipality.objects.values("country").distinct()
+        return context
+
 # Municipality view
 class MunicipalityDetail(DetailView):
     model = models.Municipality

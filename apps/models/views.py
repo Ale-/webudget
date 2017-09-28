@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.utils.html import escape
 from django.core.exceptions import PermissionDenied
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse, reverse_lazy
 # apps
 from apps.models import forms, models
 
@@ -27,3 +28,6 @@ class MunicipalityCreate(LoginRequiredMixin, CreateView):
         context['form_html_class'] = 'municipality'
         context['submit_text'] = _('Add municipality')
         return context
+
+    def get_success_url(self):
+        return reverse('municipality-list')

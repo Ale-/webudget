@@ -11,7 +11,7 @@ class MunicipalityForm(forms.ModelForm):
         model = models.Municipality
         fields = '__all__'
         widgets = {
-            'coords'      : utils.GeocodedLeafletWidget(submit_text='Locate municipality', provider="google", sources="id_name"),
+            'coords'      : utils.GeocodedLeafletWidget(submit_text='Locate municipality', provider="google", sources="id_name id_country"),
             'description' : utils.LimitedTextareaWidget(limit=500),
         }
 

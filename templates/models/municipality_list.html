@@ -1,22 +1,75 @@
-{# Municipality detail page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{# Municipality detail page #} {% extends 'layouts/single-fixed-with-header.html' %}
+{% load i18n utils static leaflet_tags countries %}
+
 {% block body_classes %}municipality-list{% endblock %}
+
+{% block page_header %}
+    {% leaflet_css %}
+{% endblock %}
 
 {% block page_html_title %}
     {% trans 'Municipalities' as title %}
     {{ title }}
 {% endblock %}
 
+{% block content_header %}
+    {% leaflet_map "municipalities_map" %}
+{% endblock %}
+
 {% block main %}
-    {% trans 'Municipalities' as title %}
+    {% trans 'Explore' as title %}
     {% include 'pages/pagetitle.html' with title=title %}
-    {% lorem %}
-    {% for item in items %}
-        {{ item.name }}
-    {% empty %}
-    <div class="no-results--municipalities">
-        {% blocktrans trimmed %}
-        There're no contents created yet.
-        {% endblocktrans %}
+    <div class="municipalities-filters">
+        <div class="municipalities-filter">
+            <label class="municipalities-filter__label">
+                {% trans 'Filter by country' %}
+            </label>
+            <select id="country-filter" class="municipalities-filter__select"
+                    onchange="filter_municipalities_by_country(this)">
+                <option value="ALL" selected="selected">
+                    {% trans 'See all' %}
+                </option>
+                {% for country in current_countries %}
+                    {% get_country country.country as c %}
+                    <option value="{{ country.country }}">
+                        {{ c.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
     </div>
-    {% endfor %}
+
+    <div class="municipalities-view">
+        {% for item in object_list %}
+        <a class="municipalities-item-link" href="{% url 'municipality-detail' item.slug %}">
+            <div class="municipalities-item {{ item.country }}">
+                <p class="municipalities-country">
+                    {% get_country item.country as c %}
+                    {{ c.name }}
+                </p>
+                <h3 class="municipalities-name">
+                    {{ item.name }}
+                </h3>
+                <p class="municipalities-name">
+                {% if item.description %}
+                    {{ item.name }}
+                {% else %}
+                    {% lorem %}
+                {% endif %}
+                </p>
+            </div>
+        </a>
+        {% empty %}
+        <div class="no-results--municipalities">
+            {% blocktrans trimmed %}
+            There're no contents created yet.
+            {% endblocktrans %}
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+    {% leaflet_js %}
+    {% include 'scripts/municipalities.html' with municipalities=object_list %}
 {% endblock %}

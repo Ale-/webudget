@@ -1,0 +1,23 @@
+{# Renders a template with a single column of fixed with #}
+{% extends 'base.html' %} {% block layout_classes %}single-fixed-with-header{% endblock %}
+
+{% block layout %}
+
+    {% include 'regions/header.html' with region_name='header' html_container='header' layout='fluid' %}
+    <header class="region-map">
+        <div class="container-fluid">
+            {% block content_header %}{% endblock %}
+        </div>
+    </header>
+    <div class="region-content">
+        <div class="container-fixed">
+            <main class="layout-main">
+                {% block main %}{% endblock %}
+            </main>
+            {% include 'regions/navigation.html' with region_name='navigation' html_container='aside' layout='hidden' %}
+        </div>
+    </div>
+
+    {% include 'regions/footer.html' with region_name='footer' html_container='footer' layout='fluid' %}
+
+{% endblock %}

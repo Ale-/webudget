@@ -1,0 +1,22 @@
+// Municipalities map block
+// /models/municipality_list.html
+
+@import compass/css3/border-radius
+@import compass/css3/box-shadow
+@import compass/css3/filter
+
+#municipalities_map
+  height: $m*20
+
+#municipalities_map .leaflet-top
+  top: $m*2.5
+  left: 12px
+
+#municipalities_map .leaflet-bar
+  +box-shadow(none)
+
+#municipalities_map .leaflet-bar a
+  +border-radius(0)
+
+#municipalities_map .leaflet-tile
+  +filter( grayscale(100%) )

@@ -1,0 +1,93 @@
+{# Script to populate municipalities's map with items #}
+{% load l10n utils %}
+
+<script type="text/javascript">
+
+var map = {};
+var LOCATIONS = {
+    'ALL' : [44.4945392,21.4319299,4],
+    'AL'  : [],
+    'AD'  : [],
+    'AT'  : [],
+    'BY'  : [],
+    'BE'  : [],
+    'BA'  : [],
+    'BG'  : [],
+    'HR'  : [44.5811713,16.6275349,7],
+    'CY'  : [],
+    'CZ'  : [],
+    'DK'  : [],
+    'EE'  : [],
+    'FO'  : [],
+    'FI'  : [],
+    'FR'  : [],
+    'DE'  : [],
+    'GI'  : [],
+    'GR'  : [38.3581159,24.1713701,6],
+    'HU'  : [],
+    'IS'  : [],
+    'IE'  : [],
+    'IM'  : [],
+    'IT'  : [42.039499,13.3420248,6],
+    'RS'  : [],
+    'LV'  : [],
+    'LI'  : [],
+    'LT'  : [],
+    'LU'  : [],
+    'MK'  : [],
+    'MT'  : [],
+    'MD'  : [],
+    'MC'  : [],
+    'ME'  : [],
+    'NL'  : [],
+    'NO'  : [],
+    'PL'  : [],
+    'PT'  : [],
+    'RO'  : [45.9684433,25.4758709,6],
+    'RU'  : [],
+    'SM'  : [],
+    'RS'  : [44.1421933,20.8776788,7],
+    'SK'  : [],
+    'SI'  : [],
+    'ES'  : [39.9760851,-3.5797563,7],
+    'SE'  : [],
+    'CH'  : [],
+    'UA'  : [],
+    'GB'  : [],
+    'VA'  : [],
+};
+
+var map = {};
+
+/**
+ *  After map initialization set map object and add it markers
+ */
+window.addEventListener("map:init", function(event)
+{
+    map = event.detail.map;
+    {% for municipality in municipalities %}
+        var popup = "<h5>{{ municipality.name }}</h5>";
+        L.marker([ {{ municipality.coords.coordinates.1 | unlocalize }}, {{  municipality.coords.coordinates.0 | unlocalize }} ]).bindPopup(popup).addTo(map);
+    {% endfor %}
+});
+
+/**
+ *  Filter map and grid view
+ */
+var filter_municipalities_by_country = function(e)
+{
+    var f = e.value;
+    var municipalities = document.querySelectorAll('.municipalities-item');
+    if( f !== 'ALL'){
+        municipalities.forEach(function(item) { item.style.display = 'none'; });
+        municipalities = document.querySelectorAll('.municipalities-item.' + e.value);
+    }
+    municipalities.forEach(function(item) { item.style.display = 'block'; });
+    if(municipalities.length <= 3)
+        document.querySelector('.municipalities-view').classList.add('few');
+    else
+        document.querySelector('.municipalities-view').classList.remove('few')
+    map.setView(new L.LatLng(LOCATIONS[f][0], LOCATIONS[f][1]), LOCATIONS[f][2]);
+};
+
+</script>
