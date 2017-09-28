@@ -1,0 +1,18 @@
+{# Contact form #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n utils %}
+{% block body_classes %}contact-form{% endblock %}
+
+{% block page_html_title %}
+    {% trans 'Contact' as title %}
+    {{ title }}
+{% endblock %}
+
+{# Content #}
+{% block main %}
+    {% trans 'Contact' as title %}
+    {% trans 'Send message' as login_text %}
+    <div class="narrow-container centered-block">
+        {% fake_breadcrumb %}
+        {% include 'pages/pagetitle.html' with title=title %}
+        {% include 'forms/simpleform.html' with form_title=title form=form form_class="contact" submit_text=login_text %}
+    </div>
+{% endblock %}
