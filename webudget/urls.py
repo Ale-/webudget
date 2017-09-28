@@ -10,8 +10,6 @@ from apps.views import views
 from apps.models import urls as models_urls
 
 urlpatterns = [
-    # Admin
-    url(r'^admin/', include(admin.site.urls)),
     # i18n
     url(r'^i18n/', include('django.conf.urls.i18n')),
     # Contact form
@@ -20,6 +18,8 @@ urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     # Registration
     url(r'', include('registration.backends.default.urls')),
+    # Admin
+    url(r'^admin/', include(admin.site.urls)),
 ]
 
 urlpatterns += i18n_patterns(

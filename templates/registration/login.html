@@ -9,5 +9,15 @@
 {# Content #}
 {% block main %}
     {% trans 'Login' as login_submit %}
-    {% include 'forms/simpleform.html' with form_title="Login" form=form form_class="login" submit_text=login_submit %}
+    <div class="narrow-container centered-block">
+        {% include 'pages/pagetitle.html' with title=login_submit classes="centered" %}
+        {% include 'forms/simpleform.html' with form_title="Login" form=form form_class="login" submit_text=login_submit %}
+        <ul class="form-login-actions">
+            <li>
+                <a class="form-login-actions__password-reset" href="{% url 'auth_password_reset' %}">
+                {% trans 'Forgot your password?' %}
+                </a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}
