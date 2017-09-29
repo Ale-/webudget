@@ -7,6 +7,15 @@
 
 #municipalities_map
   height: $m*20
+  &:after
+    content: " "
+    width: 100%
+    position: absolute
+    bottom: 0
+    left: 0
+    height: 1px
+    z-index: 1000
+    +box-shadow(0 0 5px rgba(black, .5))
 
 #municipalities_map .leaflet-top
   top: $m*2.5
@@ -20,3 +29,19 @@
 
 #municipalities_map .leaflet-tile
   +filter( grayscale(100%) )
+
+#municipalities_map .leaflet-marker-icon
+  +filter( hue-rotate(150deg) )
+
+#municipalities_map .leaflet-control-attribution
+  background: white
+  padding: 0 $m
+  +links_mainmenu
+
+
+#municipalities_map .leaflet-popup-content-wrapper
+  +border-radius(0)
+
+#municipalities_map .leaflet-popup-content-wrapper h5
+  +links_mainmenu
+  text-transform: uppercase

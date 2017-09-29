@@ -66,7 +66,7 @@ window.addEventListener("map:init", function(event)
 {
     map = event.detail.map;
     {% for municipality in municipalities %}
-        var popup = "<h5>{{ municipality.name }}</h5>";
+        var popup = "<h5><a href='{% url 'municipality-detail' municipality.slug %}'>{{ municipality.name }}</a></h5>";
         L.marker([ {{ municipality.coords.coordinates.1 | unlocalize }}, {{  municipality.coords.coordinates.0 | unlocalize }} ]).bindPopup(popup).addTo(map);
     {% endfor %}
 });
