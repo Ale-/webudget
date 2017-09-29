@@ -12,7 +12,6 @@ IPy==0.83
 jsonfield==2.0.2
 olefile==0.44
 Pillow==4.2.1
-pkg-resources==0.0.0
 python-magic==0.4.13
 pytz==2017.2
 six==1.10.0
