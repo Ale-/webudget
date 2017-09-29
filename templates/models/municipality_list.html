@@ -43,6 +43,9 @@
         {% for item in object_list %}
         <a class="municipalities-item-link" href="{% url 'municipality-detail' item.slug %}">
             <div class="municipalities-item {{ item.country }}">
+                <figure class="municipalities-image">
+                    <img src="{{ item.image.url }}" />
+                </figure>
                 <p class="municipalities-country">
                     {% get_country item.country as c %}
                     {{ c.name }}

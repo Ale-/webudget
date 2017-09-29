@@ -6,6 +6,12 @@ from django.utils.text import slugify
 from djgeojson.fields import PointField
 from django_countries.fields import CountryField
 from ckeditor_uploader.fields import RichTextUploadingField
+# apps
+from . import validators, utils
+
+validate_image_size = validators.ImageSizeValidator({ 'min_width' : 600, 'min_height' : 300, 'max_width' : 1920, 'max_height' : 1280 })
+validate_image_type = validators.ImageTypeValidator(["jpeg", "png"])
+city_images_path  = utils.RenameImage("images/cities/")
 
 class Municipality(models.Model):
     """ Municipality """
@@ -15,6 +21,9 @@ class Municipality(models.Model):
     description = models.TextField(_('Summary'), blank=True, help_text=_('A short summary about the municipality.'))
     country     = CountryField(_('Country'), help_text=_('Select municipality\'s country.'))
     coords      = PointField(_('Coordinates'), blank=False, null=True, help_text=_('Locate the municipality in the map.'))
+    image       = models.ImageField(_('Image'), blank=True, null=True, validators=[validate_image_size, validate_image_type],
+                                    upload_to = city_images_path,
+                                    help_text=_('Representative image of the municipality for the views.') )
 
     class Meta:
         verbose_name        = _('Municipality')
