@@ -1,7 +1,49 @@
-{# Municipality detail page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{# Municipality detail page #} {% extends 'layouts/single-fixed-with-header.html' %}
+{% load i18n %}
 {% block body_classes %}municipality-detail{% endblock %}
 
+{% block page_html_title %}
+    {{ object.name }}
+{% endblock %}
+
+{% block content_header %}
+    <div class="municipality-meta">
+        <img src="{{ object.image.url }}" />
+        <h1 class="municipality-meta__name">{{ object.name }}</h1>
+        <p class="municipality-meta__summary">
+            {% lorem %}
+        </p>
+        <ul class="municipality-meta__actions">
+            <h4>Municipality action menu</h4>
+            <li>Action 1</li>
+            <li>Action 2</li>
+            <li>Action 3</li>
+            ...
+        </ul>
+    </div>
+{% endblock %}
+
+
 {% block main %}
-    <h1>{{ object.name }}</h1>
-    {% lorem %}
+    <div class="municipality-breadcrumb">
+        <a href="{% url 'municipality-list' %}">
+            {% trans 'See all municipalities' %}
+        </a>
+    </div>
+    <div class="municipality-budgets">
+        <h2 class="municipality-budgets__title">
+            {{ object.name }} {% trans 'budgets' %}
+        </h2>
+        <div class="municipality-budgets__content">
+            Here, some ultra nice visualizations about the city budgets.
+        </div>
+    </div>
+    <div class="municipality-milestones">
+        <h2 class="municipality-milestones__title">
+            {{ object.name }} {% trans 'milestones' %}
+        </h2>
+        <div class="municipality-milestones__content">
+            Here, some ultra nice visualizations about the city budget milestones.
+        </div>
+    </div>
 {% endblock %}

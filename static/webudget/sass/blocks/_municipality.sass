@@ -1,0 +1,66 @@
+// Municipality page
+// /models/municipality-detail.html
+
+.municipality-detail .region-map
+  font-family: $font_text
+  color: white
+  background-color: #222
+  +breakpoint('sm')
+    position: fixed
+    left: 0
+    width: 480px
+    top: 0
+    bottom: 0
+    display: inline-block
+
+.municipality-detail .region-footer
+  +breakpoint('sm')
+    padding-left: 480px + $m*2
+
+.municipality-detail .region-content
+  margin-top: $m*2
+  +breakpoint('sm')
+    padding-left: 480px + $m*2
+
+.municipality-meta__summary
+  padding: $m $m*2
+
+.municipality-meta__name
+  margin-top: 0
+  padding: 0 $m/2
+  color: white
+  text-transform: uppercase
+  background-color: #111
+  +breakpoint('sm')
+    position: absolute
+    top: 0
+    left: 258px
+  line-height: $m*2
+  font-size: $m*1.5
+
+.municipality-meta__actions
+  padding: 0 $m*2 $m*2
+  li
+    +label
+
+.municipality-graphic__summary
+  padding: 0 $m*2
+
+.municipality-breadcrumb
+  +links_mainmenu
+  position: absolute
+  top: -$m*3
+  left: 0
+  +label
+  &:before
+    content: "«"
+
+.municipality-budgets__title,
+.municipality-milestones__title
+  border-bottom: 2px solid $color_text
+
+.municipality-budgets__content,
+.municipality-milestones__content
+  height: 500px
+  text-align: center
+  padding: 200px $m*2
