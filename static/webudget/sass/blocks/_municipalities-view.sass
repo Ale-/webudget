@@ -3,7 +3,9 @@
 @import compass/css3/appearance
 
 .municipalities-filters
-  text-align: right
+  position: absolute
+  right: 0
+  top: $m*1.25
 
 .municipalities-filter__label
   +label
@@ -25,12 +27,34 @@
   +link_none
 
 .municipalities-item
-  &:hover
-    outline: 2px solid $color_text
+  position: relative
 
 .municipalities-name
-  margin-top: $m/4
+  margin-top: $m/6
 
 .municipalities-country
   text-transform: uppercase
   font-size: .7em
+
+.municipalities-image
+  margin-bottom: $m/3
+
+.municipalities-see-more
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  line-height: $m*4
+  background: white
+  color: $palette_red
+  text-transform: uppercase
+  border-top: 2px solid $palette_red
+  height: 0
+  overflow: hidden
+  text-align: center
+  font-family: $font_headers
+  +transition(height .55s ease)
+
+.municipalities-item:hover
+  .municipalities-see-more
+    height: $m*4
