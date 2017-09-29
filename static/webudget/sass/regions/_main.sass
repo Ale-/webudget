@@ -5,9 +5,11 @@
 .region-content
   padding: $m*4 0
   +transition(margin-right .25s ease)
+  +breakpoint('xs')
+    padding-left: $m
+    padding-right: $m
 
 .navigation-open .region-content
   margin-right: $navigation_width
-
 .front .region-content
   padding: 0
