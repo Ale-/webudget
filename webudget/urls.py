@@ -43,6 +43,8 @@ urlpatterns += i18n_patterns(
     # Dataset detail
     # Municipality detail
     url(r'^municipality/(?P<city>[-\w]+)/(?P<year>[-\d]{4})$', views.DatasetDetail.as_view(), name="dataset-detail"),
+    # Participate
+    url(r'^participate/$', TemplateView.as_view(template_name='pages/participate.html'), name="participate"),
 )
 
 if settings.DEBUG == True:

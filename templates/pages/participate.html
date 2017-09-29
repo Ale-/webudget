@@ -1,0 +1,13 @@
+{# About page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{% block body_classes %}participate{% endblock %}
+
+{% block page_html_title %}
+    {% trans 'Participate' as title %}
+    {{ title }}
+{% endblock %}
+
+{% block main %}
+    {% trans 'Participate' as title %}
+    {% include 'pages/pagetitle.html' with title=title %}
+    {% lorem %}
+{% endblock %}
