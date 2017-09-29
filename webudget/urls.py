@@ -26,7 +26,7 @@ urlpatterns += i18n_patterns(
     # Forms
     url(r'', include(models_urls, namespace="modelforms")),
     # Frontpage
-    url(r'^$', TemplateView.as_view(template_name='pages/front.html'), name="front"),
+    url(r'^$', views.Front.as_view(), name="front"),
     # Static
     # About
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),

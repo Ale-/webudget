@@ -1,4 +1,4 @@
-{# Frontpage #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{# Frontpage #} {% extends 'layouts/single-fluid-column.html' %} {% load i18n utils %}
 {% block body_classes %}front{% endblock %}
 
 {% block page_html_title %}
@@ -7,5 +7,44 @@
 {% endblock %}
 
 {% block main %}
-    {% lorem %}
+    <div class="front-slideshow-container">
+        <div class="slider">
+            <p onclick="slideTo(1)">
+                <span class="slider__bullet selected"></span>
+                <span class="slider__text">{% trans 'Search' %}</a>
+            </p>
+            <p onclick="slideTo(2)">
+                <span class="slider__bullet"></span>
+                <span class="slider__text">{% trans 'Know' %}</span>
+            </p>
+            <p onclick="slideTo(3)">
+                <span class="slider__bullet"></span>
+                <span class="slider__text">{% trans 'Participate' %}</span>
+            </p>
+        </div>
+        <div class="front-slideshow__slide-1">
+            <div class="presentation">
+                {% textblock block=presentation %}
+            </div>
+            <div class="search-city">
+                <input type="text" class="search-city__input"
+                       oninput="autocomplete_city(this)"
+                       placeholder="{% trans 'Look for a city here like, for instance, Zagreb' %}">
+                </input>
+                <ul class="results">
+                </ul>
+            </div>
+        </div>
+        <div class="front-slideshow__slide-2">
+            <h2>Know more slide: information about the project, etc.</h2>
+        </div>
+        <div class="front-slideshow__slide-3">
+            <h2>Participate slide: how to participate, to contribute... and so on!</h2>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+    {% include 'scripts/search-city.html' %}
+    {% include 'scripts/front-slider.html' %}
 {% endblock %}

@@ -1,12 +1,21 @@
 # django
 from django.shortcuts import render, redirect
+from django.views import View
 from django.views.generic import ListView, DetailView
 from django.http import Http404, HttpResponse
 # project
 from apps.models import models
 
+# Frontpage
+class Front(View):
+    def get(self, request, *args, **kwargs):
+        municipalities = models.Municipality.objects.all()
+        presentation   = models.Block.objects.get(title="Presentation")
+        return render(request, 'pages/front.html', locals())
+
 # Municipality list
 class MunicipalityList(ListView):
+
     model = models.Municipality
 
     def get_context_data(self, **kwargs):

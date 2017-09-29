@@ -1,0 +1,52 @@
+{# Scripts for the autocomplete municipality search input #}
+{% load static %}
+
+<script type="text/javascript">
+
+// Store municipalities in a JS object
+var municipalities = {};
+{% for m in municipalities %}
+    municipalities['{{m.slug}}'] = {
+        name    : "{{m.name}}",
+        country : "{{m.country.name}}",
+        slug    : "{{m.slug}}",
+    };
+{% endfor %}
+var results = [];
+
+// Slugify
+function slugify(text) {
+    return text.toString().toLowerCase().trim()
+  	.normalize('NFD') 				 // separate accent from letter
+  	.replace(/[\u0300-\u036f]/g, '') // remove all separated accents
+  	.replace(/\s+/g, '-')            // replace spaces with -
+  	.replace(/&/g, '-and-')          // replace & with 'and'
+  	.replace(/[^\w\-]+/g, '')        // remove all non-word chars
+  	.replace(/\-\-+/g, '-')          // replace multiple '-' with single '-'
+}
+
+// Autocomplete
+function autocomplete_city(e){
+    var slug = slugify(e.value);
+    var results = [];
+    var results_list = document.querySelector(".results");
+    results_list.innerHTML = '';
+    if(slug)
+        for(key in municipalities){
+            if(key.indexOf(slug) > -1){
+                results.push( municipalities[key] );
+            }
+        }
+        for(i in results){
+            var municipality = results[i];
+            var result = document.createElement('li');
+            result.className = "results-item";
+            // Dirty trick to pass slug from JS to django
+            var url = "{% url 'municipality-detail' 'seville' %}".replace('seville', municipality.slug);
+            result.innerHTML = '<a href="' + url + '">'
+                              + municipality.name + " (" + municipality.country + ")</a>";
+            results_list.appendChild(result);
+        }
+};
+
+</script>

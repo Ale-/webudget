@@ -1,0 +1,40 @@
+// Front slider
+// /templates/pages/front.html
+
+@import compass/css3/transition
+@import compass/css3/border-radius
+
+[class^='front-slideshow__slide-']
+  padding: $m*4
+  min-height: calc(100vh - #{$toolbar_height + $footer_height})
+
+.slider
+  position: fixed
+  left: $m
+  top: 40vh
+  p
+    margin: $m 0
+    line-height: $m*.75
+    &:hover
+      cursor: pointer
+      .slider__bullet
+        background-color: #aaa
+      .slider__text
+        display: inline-block
+
+.slider__text
+  display: none
+  margin-left: $m/2
+  +label
+  color: $palette_red
+
+.slider__bullet
+  width: $m*.75
+  height: $m*.75
+  display: inline-block
+  +border-radius(50%)
+  background-color: #ddd
+  +transition(background-color .2s ease)
+
+.slider__bullet.selected
+  background-color: #333

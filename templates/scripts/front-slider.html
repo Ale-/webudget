@@ -1,0 +1,116 @@
+<script type="text/javascript">
+
+/*window.onscroll = function(e) {
+    var top = e.pageY;
+    var slides = document.querySelectorAll('[class^="front-slideshow__slide-"]');
+    for(var i = 0; i < slides.length; i++){
+        var slide_top    = slides[i].offsetTop;
+        var slide_bottom = slide_top  + slides[i].offsetHeight;
+        if(top > slide_top && top < slide_bottom){
+            var bullet = document.querySelector('.slider p:nth-child('+(i+1)+') .slider__bullet');
+            bullet.classList.add('selected');
+            break;
+        }
+    }
+}*/
+
+/**
+ *  Function to scroll the page using vanilla js
+ *  @see https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/
+ */
+
+var easing   = 'easeInOutQuint';
+var duration = 500;
+
+var easings = {
+   linear(t) {
+      return t;
+   },
+   easeInQuad(t) {
+     return t * t;
+   },
+   easeOutQuad(t) {
+     return t * (2 - t);
+   },
+   easeInOutQuad(t) {
+     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+   },
+   easeInCubic(t) {
+     return t * t * t;
+   },
+   easeOutCubic(t) {
+     return (--t) * t * t + 1;
+   },
+   easeInOutCubic(t) {
+     return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+   },
+   easeInQuart(t) {
+     return t * t * t * t;
+   },
+   easeOutQuart(t) {
+     return 1 - (--t) * t * t * t;
+   },
+   easeInOutQuart(t) {
+     return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+   },
+   easeInQuint(t) {
+     return t * t * t * t * t;
+   },
+   easeOutQuint(t) {
+     return 1 + (--t) * t * t * t * t;
+   },
+   easeInOutQuint(t) {
+     return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
+   }
+};
+
+
+function slideTo(slide){
+  var bullet = document.querySelector('.slider p:nth-child('+slide+') .slider__bullet');
+  var bullets = document.querySelectorAll('.slider__bullet');
+  for(var i=0; i<bullets.length; i++){
+      bullets[i].classList.remove('selected');
+  }
+  bullet.classList.add('selected');
+  var start  = window.pageYOffset;
+  var destination    = document.querySelector('.front-slideshow__slide-' + slide);
+  var documentHeight = Math.max(document.body.scrollHeight,
+                                document.body.offsetHeight,
+                                document.documentElement.clientHeight,
+                                document.documentElement.scrollHeight,
+                                document.documentElement.offsetHeight);
+  var windowHeight = window.innerHeight ||
+                    document.documentElement.clientHeight ||
+                    document.getElementsByTagName('body')[0].clientHeight;
+  var startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
+  var destinationOffset = destination.offsetTop;
+  var destinationOffsetToScroll = Math.round(documentHeight - destinationOffset < windowHeight ?
+                                  documentHeight - windowHeight :
+                                  destinationOffset);
+
+  if ('requestAnimationFrame' in window === false) {
+      window.scroll(0, destinationOffsetToScroll);
+      if (callback) {
+        callback();
+      }
+      return;
+  }
+
+  function scroll() {
+      var now = 'now' in window.performance ? performance.now() : new Date().getTime();
+      var time = Math.min(1, ((now - startTime) / duration));
+      var timeFunction = easings[easing](time);
+      window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
+      if (window.pageYOffset === destinationOffsetToScroll) {
+          if (callback) {
+            callback();
+          }
+          return;
+      }
+      requestAnimationFrame(scroll);
+    }
+
+    scroll();
+}
+
+</script>

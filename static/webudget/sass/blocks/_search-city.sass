@@ -1,0 +1,49 @@
+// Search widget in frontpage
+// /pages/front.html
+
+@import compass/css3/transition
+@import compass/css3/animation
+@import compass/css3/border-radius
+
+.search-city
+  text-align: center
+  margin: 0 auto
+  width: 480px
+
+.search-city__input
+  text-align: center
+  width: 100%
+  font-family: $font_headers
+  font-size: 1.25em
+  background: none
+  border: 2px dashed $color_text
+  border-width: 0 0 2px 0
+  line-height: $m*2
+
+.search-city__input::placeholder
+  color: $color_text !important
+
++keyframes(slide)
+  0%
+    height: 0
+  100%
+    height: $m*2
+
+.search-city .results
+  color: white
+  font-family: $font_headers
+  text-transform: uppercase
+  letter-spacing: 2px
+  background-color: darken($palette_red, 10%)
+  margin-top: $m/6
+  max-height: $m*6
+  overflow-y: auto
+  +border-radius(6px)
+  a
+    +link_none
+    display: block
+    line-height: $m*2
+    +transition(background-color .2s ease)
+    border-bottom: 1px solid white
+    &:hover
+      background-color: rgba(black, .25)

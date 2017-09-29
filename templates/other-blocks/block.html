@@ -1,0 +1,21 @@
+{# Template for a generic text block #} {% load i18n %}
+
+<div class="text-block">
+    {% if display_title %}
+    <{{title_tag}} class="text-block__body">
+        {{ block.title }}
+    </{{title_tag}}>
+    {% endif %}
+    <div class="text-block__body">
+        {% autoescape off %}
+            {{ block.body }}
+        {% endautoescape %}
+    </div>
+    {% if request.user.is_staff %}
+        <div class="text-block__edit">
+            <a href="/">
+                {% trans 'Editar' %}
+            </a>
+        </div>
+    {% endif %}
+</div>
