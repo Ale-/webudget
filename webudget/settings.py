@@ -42,6 +42,8 @@ SITE_ID = 1
 #
 
 CONTRIB_APPS = [
+    'material',
+    'material.admin',
     'django.contrib.sites',
     'django.contrib.admin',
     'registration',
@@ -55,7 +57,8 @@ CONTRIB_APPS = [
     'djgeojson',
     'django_countries',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'imagekit',
 ]
 
 PROJECT_APPS = [

@@ -26,8 +26,8 @@ class Municipality(models.Model):
                                     help_text=_('Representative image of the municipality for the views.') )
 
     class Meta:
-        verbose_name        = _('Municipality')
-        verbose_name_plural = _('Municipalities')
+        verbose_name        = _('Municipality basic data')
+        verbose_name_plural = _('Municipalities basic data')
 
     def __str__(self):
         """ String representation of this model objects. """
@@ -50,6 +50,10 @@ class Milestone(models.Model):
     def __str__(self):
         """ String representation of this model objects. """
         return self.name
+
+    class Meta:
+        verbose_name        = _('Municipality milestone')
+        verbose_name_plural = _('Municipalities milestones')
 
 class Dataset(models.Model):
     """ City dataset of a specific year """
@@ -82,6 +86,10 @@ class Dataset(models.Model):
         """ String representation of this model objects. """
         return self.municipality.name + "#" + self.year or '---'
 
+    class Meta:
+        verbose_name        = _('Municipality dataset')
+        verbose_name_plural = _('Municipalities datasets')
+
 class Block(models.Model):
     """ Text blocks """
 
@@ -91,3 +99,7 @@ class Block(models.Model):
     def __str__(self):
         """ String representation of this model objects. """
         return self.title
+
+    class Meta:
+        verbose_name        = _('Text block')
+        verbose_name_plural = _('Text blocks')
