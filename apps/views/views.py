@@ -1,3 +1,6 @@
+# python
+import json
+from random import randint
 # django
 from django.shortcuts import render, redirect
 from django.views import View
@@ -40,3 +43,20 @@ class DatasetDetail(DetailView):
     def get_object(self):
         city = models.Municipality.objects.filter(slug=self.kwargs['city']).first()
         return self.model.objects.filter(year=self.kwargs['year'], municipality=city)
+
+# Dataset fake API for testing purposes
+def ApiTest(request):
+    id = request.GET.get('id')
+    first_year = 2000
+    years      = 17
+    datasets   = []
+    _min = 2e6
+    _max = 20e6
+    chapters = [ 'public_services', 'defence', 'public_order', 'economic_affairs', 'environmental', 'housing', 'health', 'recreation', 'education', 'social_protection' ]
+    for year in range(years):
+        dataset = {}
+        dataset['year'] = first_year + year
+        for chapter in chapters:
+            dataset[chapter] = randint(_min, _max)
+        datasets.append(dataset)
+    return HttpResponse(json.dumps(datasets), content_type="application/json")

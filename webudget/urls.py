@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'', include('registration.backends.default.urls')),
     # Admin
     url(r'^admin/', include(admin.site.urls)),
+    # Api test
+    url(r'^api/test$', views.ApiTest, name="api-test"),
 ]
 
 urlpatterns += i18n_patterns(
@@ -44,7 +46,7 @@ urlpatterns += i18n_patterns(
     # Municipality detail
     url(r'^municipality/(?P<city>[-\w]+)/(?P<year>[-\d]{4})$', views.DatasetDetail.as_view(), name="dataset-detail"),
     # Participate
-    url(r'^participate/$', TemplateView.as_view(template_name='pages/participate.html'), name="participate"),
+    url(r'^participate/$', TemplateView.as_view(template_name='pages/participate.html'), name="participate"),    
 )
 
 if settings.DEBUG == True:
