@@ -63,6 +63,8 @@ class Dataset(models.Model):
     population   = models.PositiveIntegerField(_('Population'), help_text=_('City population.'))
     source       = models.CharField(_('Source'), max_length=128, null=True, help_text=_('Name of the source of the data provided.'))
     source_link  = models.URLField(_('Source link'), null=True, help_text=_('A link to the source data provided.'))
+
+    # ECONOMIC CLASSIFICATION
     # incomes
     in_taxes         = models.PositiveIntegerField(_('Tax revenues'), default=0)
     in_grants        = models.PositiveIntegerField(_('Grants'), default=0)
@@ -80,6 +82,19 @@ class Dataset(models.Model):
     ex_compensations = models.PositiveIntegerField(_('Compensations'), default=0)
     ex_other         = models.PositiveIntegerField(_('Other expenditures'), default=0)
     ex_nonfinancial  = models.PositiveIntegerField(_('Expenditures for the acquisition of non-financial assets'), default=0)
+
+    # FUNCTIONAL CLASSIFICATION  -- COFOG
+    # @see https://www.oecd.org/gov/48250728.pdf
+    public_services    = models.PositiveIntegerField(_('General public services'), default=0)
+    defence            = models.PositiveIntegerField(_('Defence'), default=0)
+    public_order       = models.PositiveIntegerField(_('Public order and safety'), default=0)
+    economic_affaris   = models.PositiveIntegerField(_('Economic affairs'), default=0)
+    environmental      = models.PositiveIntegerField(_('Environmental protection'), default=0)
+    housing            = models.PositiveIntegerField(_('Housing and community ammenities'), default=0)
+    health             = models.PositiveIntegerField(_('Health'), default=0)
+    recreation         = models.PositiveIntegerField(_('Recreation, culture and religion'), default=0)
+    education          = models.PositiveIntegerField(_('Education'), default=0)
+    social_proctection = models.PositiveIntegerField(_('Social protection'), default=0)
 
 
     def __str__(self):
