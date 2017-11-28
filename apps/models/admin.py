@@ -30,9 +30,27 @@ class MunicipalityAdmin(LeafletGeoAdmin):
     list_display = ('name', 'country', 'description', 'thumb')
     list_filter  = ('country',)
     thumb        = AdminThumbnail(image_field=cached_admin_thumb)
+    fields       = (('name', 'country', 'image'), 'description', 'coords')
+
+# Municipality admin form
+class DatasetAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Basic data', {
+           'fields': (('municipality', 'year', 'population'), ('source', 'source_link'))
+        }),
+        ('Incomes. Economic classification', {
+           'fields': ('in_taxes', 'in_grants', 'in_properties', 'in_fees', 'in_sales', 'in_penalties', 'in_nonfinancial')
+        }),
+        ('Expenses. Economic classification', {
+           'fields': ('ex_wages', 'ex_material', 'ex_financial', 'ex_subsidies', 'ex_grants', 'ex_compensations', 'ex_other', 'ex_nonfinancial')
+        }),
+        ('COFOG', {
+            'fields': ('public_services', 'defence', 'public_order', 'economic_affaris', 'environmental', 'housing', 'health', 'recreation', 'education', 'social_proctection'),
+        }),
+    )
 
 # Block admin form
-class BlockAdmin(LeafletGeoAdmin):
+class BlockAdmin(admin.ModelAdmin):
     model        = models.Block
     ordering     = ('title',)
     list_display = ('title', 'trimmed_content',)
@@ -46,6 +64,6 @@ class BlockAdmin(LeafletGeoAdmin):
 
 # Register models in admin
 admin.site.register(models.Municipality, MunicipalityAdmin)
-admin.site.register(models.Dataset)
+admin.site.register(models.Dataset, DatasetAdmin)
 admin.site.register(models.Milestone)
 admin.site.register(models.Block, BlockAdmin)
