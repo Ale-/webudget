@@ -88,13 +88,13 @@ class Dataset(models.Model):
     public_services    = models.PositiveIntegerField(_('General public services'), default=0)
     defence            = models.PositiveIntegerField(_('Defence'), default=0)
     public_order       = models.PositiveIntegerField(_('Public order and safety'), default=0)
-    economic_affaris   = models.PositiveIntegerField(_('Economic affairs'), default=0)
+    economic_affairs   = models.PositiveIntegerField(_('Economic affairs'), default=0)
     environmental      = models.PositiveIntegerField(_('Environmental protection'), default=0)
     housing            = models.PositiveIntegerField(_('Housing and community ammenities'), default=0)
     health             = models.PositiveIntegerField(_('Health'), default=0)
     recreation         = models.PositiveIntegerField(_('Recreation, culture and religion'), default=0)
     education          = models.PositiveIntegerField(_('Education'), default=0)
-    social_proctection = models.PositiveIntegerField(_('Social protection'), default=0)
+    social_protection = models.PositiveIntegerField(_('Social protection'), default=0)
 
 
     def __str__(self):
