@@ -44,19 +44,17 @@ class DatasetDetail(DetailView):
         city = models.Municipality.objects.filter(slug=self.kwargs['city']).first()
         return self.model.objects.filter(year=self.kwargs['year'], municipality=city)
 
-# Dataset fake API for testing purposes
+
+# Dataset fake API for testing D3 widgets
 def ApiTest(request):
-    id = request.GET.get('id')
-    first_year = 2000
-    years      = 17
-    datasets   = []
-    _min = 2e6
-    _max = 20e6
-    chapters = [ 'public_services', 'defence', 'public_order', 'economic_affairs', 'environmental', 'housing', 'health', 'recreation', 'education', 'social_protection' ]
-    for year in range(years):
-        dataset = {}
-        dataset['year'] = first_year + year
-        for chapter in chapters:
-            dataset[chapter] = randint(_min, _max)
+    datasets = []
+    # Fetch COFOG related fields
+    dataset_fields = models.Dataset._meta.get_fields()
+    cofog_fields   = [ field for field in dataset_fields if str(field).startswith('models.Dataset.concept_') ]
+    for i in range(17):
+        dataset = { 'year' : 2000 + i }
+        for field in cofog_fields:
+            dataset[str(field.verbose_name)] = randint(2e6, 20e6)
         datasets.append(dataset)
+
     return HttpResponse(json.dumps(datasets), content_type="application/json")
