@@ -1,4 +1,5 @@
 # django
+from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
 from django.utils.html import strip_tags
 # contrib
@@ -9,6 +10,7 @@ from imagekit.processors import ResizeToFill
 from imagekit.cachefiles import ImageCacheFile
 # project
 from . import models
+
 
 # Thumbnail generator for admin views
 # @see https://github.com/matthewwithanm/django-imagekit#user-content-admin
@@ -32,22 +34,55 @@ class MunicipalityAdmin(LeafletGeoAdmin):
     thumb        = AdminThumbnail(image_field=cached_admin_thumb)
     fields       = (('name', 'country', 'image'), 'description', 'coords')
 
-# Municipality admin form
+# Dataset admin form
+
+dataset_fields = models.Dataset._meta.get_fields()
+def cofog_fields(cat):
+    return  [ str(field)[15:] for field in dataset_fields if str(field).startswith('models.Dataset.concept_' + cat) ]
+
 class DatasetAdmin(admin.ModelAdmin):
-    fieldsets = (
-        ('Basic data', {
-           'fields': (('municipality', 'year', 'population'), ('source', 'source_link'))
+
+    fieldsets    = (
+        (_('General data'), {
+            'fields' : ['municipality', 'year', 'population', ('source', 'source_link') ],
         }),
-        ('Incomes. Economic classification', {
-           'fields': ('in_taxes', 'in_grants', 'in_properties', 'in_fees', 'in_sales', 'in_penalties', 'in_nonfinancial')
+        (_('General public services'), {
+            'fields' : cofog_fields('ps'),
+            'classes': ('collapse',),
         }),
-        ('Expenses. Economic classification', {
-           'fields': ('ex_wages', 'ex_material', 'ex_financial', 'ex_subsidies', 'ex_grants', 'ex_compensations', 'ex_other', 'ex_nonfinancial')
+        (_('Defence'), {
+            'fields' : cofog_fields('de')
         }),
-        ('COFOG', {
-            'fields': ('public_services', 'defence', 'public_order', 'economic_affaris', 'environmental', 'housing', 'health', 'recreation', 'education', 'social_proctection'),
+        (_('Public order and safety'), {
+            'fields' : cofog_fields('po')
+        }),
+        (_('Economic affairs'), {
+            'fields' : cofog_fields('ea')
+        }),
+        (_('Environmental protection'), {
+            'fields' : cofog_fields('ep')
+        }),
+        (_('Housing and community amenities'), {
+            'fields' : cofog_fields('ho')
+        }),
+        (_('Health'), {
+            'fields' : cofog_fields('he')
+        }),
+        (_('Recreation, culture and religion'), {
+            'fields' : cofog_fields('re')
+        }),
+        (_('Education'), {
+            'fields' : cofog_fields('ed')
+        }),
+        (_('Social protection'), {
+            'fields' : cofog_fields('so')
         }),
     )
+
+    class Media:
+        js = (
+            'webudget/js/dataset-admin.js',       # project static folder
+        )
 
 # Block admin form
 class BlockAdmin(admin.ModelAdmin):
