@@ -1,5 +1,5 @@
 {# Municipality detail page #} {% extends 'layouts/single-fixed-with-header.html' %}
-{% load i18n %}
+{% load i18n static %}
 {% block body_classes %}municipality-detail{% endblock %}
 
 {% block page_html_title %}
@@ -35,7 +35,8 @@
             {{ object.name }} {% trans 'budgets' %}
         </h2>
         <div class="municipality-budgets__content">
-            Here, some ultra nice visualizations about the city budgets.
+            <div id="time-series"></div>
+            <div class="legend"></div>
         </div>
     </div>
     <div class="municipality-milestones">
@@ -46,4 +47,13 @@
             Here, some ultra nice visualizations about the city budget milestones.
         </div>
     </div>
+{% endblock %}
+
+{% block page_scripts %}
+    <!-- Load D3 -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- Load visualizations -->
+    <script type="text/javascript">
+      {% include 'scripts/municipality-visualizations.js' %}
+    </script>
 {% endblock %}
