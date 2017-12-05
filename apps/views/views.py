@@ -50,11 +50,11 @@ def ApiTest(request):
     datasets = []
     # Fetch COFOG related fields
     dataset_fields = models.Dataset._meta.get_fields()
-    cofog_fields   = [ field for field in dataset_fields if str(field).startswith('models.Dataset.concept_') ]
+    cofog_fields   = [ str(field)[15:] for field in dataset_fields if str(field).startswith('models.Dataset.concept_') ]
     for i in range(17):
         dataset = { 'year' : 2000 + i }
         for field in cofog_fields:
-            dataset[str(field.verbose_name)] = randint(2e6, 20e6)
+            dataset[field] = randint(2e6, 20e6)
         datasets.append(dataset)
 
     return HttpResponse(json.dumps(datasets), content_type="application/json")

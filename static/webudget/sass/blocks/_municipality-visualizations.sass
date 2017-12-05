@@ -1,0 +1,55 @@
+#municipality-visualizations
+  width: 100%
+  height: 400px
+  text
+    font-weight: bold
+    font-size: .9em !important
+    fill-opacity: .6
+    max-width: 90%
+  .amount
+    font-family: $font_headers
+    fill-opacity: .8
+  rect
+    cursor: pointer
+    +transition(fill-opacity, .25s ease)
+    &:hover
+      fill-opacity: .75
+
+#municipality-visualizations.showing-children
+  .first-level
+    display: none
+  rect:hover
+    fill-opacity: inherit
+
+.municipality-budgets__description,
+.municipality-budgets__auxiliar
+  font-size: .75em
+  margin: $m*2 0 $m
+
+.municipality-budgets__auxiliar
+  text-align: right
+  opacity: 0
+  +transition(opacity .25s ease)
+  &::before
+    content: "×"
+    margin-right: $m/4
+    font-weight: bold
+
+.showing-children + .municipality-budgets__auxiliar
+  opacity: 1
+
+.sparkline
+  fill: none
+  stroke: rgba(black, .35)
+  stroke-dasharray: 2, 2
+
+marker circle
+  fill: rgba(black, .35)
+  stroke: none
+
+.municipality-budgets__legend
+  h3, p
+    font-size: .9em !important
+    display: inline-block
+    text-transform: uppercase
+    margin-right: $m

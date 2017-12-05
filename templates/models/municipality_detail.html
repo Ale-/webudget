@@ -32,11 +32,17 @@
     </div>
     <div class="municipality-budgets">
         <h2 class="municipality-budgets__title">
-            {{ object.name }} {% trans 'budgets' %}
         </h2>
+        <p class="municipality-budgets__description">
+            This visualization shows the budget allocation of {{ object.name }} using COFOG budget classification. Click the concepts for further information.
+        </p>
         <div class="municipality-budgets__content">
-            <div id="time-series"></div>
-            <div class="legend"></div>
+            <p class="municipality-budgets__legend">
+            </p>
+            <svg id="municipality-visualizations"></svg>
+            <p class="municipality-budgets__auxiliar">
+                Click on any rectangle to go back.
+            </p>
         </div>
     </div>
     <div class="municipality-milestones">
