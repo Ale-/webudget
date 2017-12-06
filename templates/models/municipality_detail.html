@@ -1,58 +1,34 @@
-{# Municipality detail page #} {% extends 'layouts/single-fixed-with-header.html' %}
-{% load i18n static %}
+{# Municipality detail page #} {% extends 'layouts/single-fluid-column.html' %}
+{% load i18n static imagekit %}
 {% block body_classes %}municipality-detail{% endblock %}
 
 {% block page_html_title %}
     {{ object.name }}
 {% endblock %}
 
-{% block content_header %}
-    <div class="municipality-meta">
-        <img src="{{ object.image.url }}" />
-        <h1 class="municipality-meta__name">{{ object.name }}</h1>
-        <p class="municipality-meta__summary">
-            {% lorem %}
-        </p>
-        <ul class="municipality-meta__actions">
-            <h4>Municipality action menu</h4>
-            <li>Action 1</li>
-            <li>Action 2</li>
-            <li>Action 3</li>
-            ...
-        </ul>
-    </div>
-{% endblock %}
-
-
 {% block main %}
-    <div class="municipality-breadcrumb">
-        <a href="{% url 'municipality-list' %}">
-            {% trans 'See all municipalities' %}
-        </a>
-    </div>
     <div class="municipality-budgets">
-        <h2 class="municipality-budgets__title">
-        </h2>
-        <p class="municipality-budgets__description">
-            This visualization shows the budget allocation of {{ object.name }} using COFOG budget classification. Click the concepts for further information.
-        </p>
         <div class="municipality-budgets__content">
-            <p class="municipality-budgets__legend">
-            </p>
+            <p class="municipality-budgets__legend"></p>
             <svg id="municipality-visualizations"></svg>
             <p class="municipality-budgets__auxiliar">
                 Click on any rectangle to go back.
             </p>
+            <p class="municipality-budgets__description">
+                This visualization shows the budget allocation of {{ object.name }} using COFOG budget classification. Click the concepts for further information.
+            </p>
         </div>
     </div>
-    <div class="municipality-milestones">
-        <h2 class="municipality-milestones__title">
-            {{ object.name }} {% trans 'milestones' %}
-        </h2>
-        <div class="municipality-milestones__content">
-            Here, some ultra nice visualizations about the city budget milestones.
-        </div>
-    </div>
+    <h1 class="municipality__name">
+        {{ object.name }}
+    </h1>
+    <p class="municipality__description">
+        {% thumbnail '100x100' object.image %}
+        {% lorem %} (a summary about the municipality)
+    </p>
+    <p class="municipality__description">
+        And here we start explaining facts, data and other things in a narrative and playful way.
+    </p>
 {% endblock %}
 
 {% block page_scripts %}
@@ -60,6 +36,7 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <!-- Load visualizations -->
     <script type="text/javascript">
+      {% include 'scripts/settings.js' %}
       {% include 'scripts/municipality-visualizations.js' %}
     </script>
 {% endblock %}

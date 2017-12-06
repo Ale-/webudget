@@ -1,6 +1,6 @@
 #municipality-visualizations
   width: 100%
-  height: 400px
+  height: 50vh
   text
     font-weight: bold
     font-size: .9em !important
@@ -24,7 +24,7 @@
 .municipality-budgets__description,
 .municipality-budgets__auxiliar
   font-size: .75em
-  margin: $m*2 0 $m
+  margin: 0 $m
 
 .municipality-budgets__auxiliar
   text-align: right
@@ -48,6 +48,12 @@ marker circle
   stroke: none
 
 .municipality-budgets__legend
+  position: absolute
+  top: -$m*2
+  left: 40vw
+  width: 360px
+  text-align: center
+  left: calc(50vw-180px)
   h3, p
     font-size: .9em !important
     display: inline-block
